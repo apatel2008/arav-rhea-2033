@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Arav &amp; Rhea · July 10, 2033">
+<meta property="og:description" content="Counting down every second until the tenth of July, 2033.">
+<title>Arav &amp; Rhea · July 10, 2033</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+  /* Layout: a single save-the-date card, one column, stationery-centered; the clock sits in a hairline ledger below the names. */
+  :root {
+    --bg: #F5F0F2;
+    --glow: rgba(138, 47, 79, 0.10);
+    --fg: #2A2230;
+    --muted: #7D6F7C;
+    --accent: #8A2F4F;
+    --gold: #A98841;
+    --rule: #DFD2D9;
+    --font-display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+    --font-body: 'Jost', 'Futura', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17121D;
+      --glow: rgba(226, 155, 180, 0.12);
+      --fg: #F1E9EE;
+      --muted: #A596A4;
+      --accent: #E29BB4;
+      --gold: #D4B66C;
+      --rule: #372C3E;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17121D;
+    --glow: rgba(226, 155, 180, 0.12);
+    --fg: #F1E9EE;
+    --muted: #A596A4;
+    --accent: #E29BB4;
+    --gold: #D4B66C;
+    --rule: #372C3E;
+    color-scheme: dark;
+  }
+
+  html { height: 100%; }
+  body {
+    min-height: 100%;
+    margin: 0;
+    background: var(--bg);
+    background-image: radial-gradient(ellipse 80% 55% at 50% 0%, var(--glow), transparent 70%);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-weight: 300;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 48px 56px;
+    display: flex;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 720px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .eyebrow {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .names {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(54px, 15vw, 112px);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .names .amp {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+    padding: 0 0.08em;
+  }
+
+  .date {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 5.6vw, 30px);
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .date .year {
+    display: block;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: min(100%, 320px);
+    color: var(--gold);
+  }
+  .ornament::before, .ornament::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .ornament svg { width: 14px; height: 14px; flex: none; }
+
+  .clock {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 6px 0;
+  }
+  .unit {
+    min-width: 0;
+    padding: 18px 6px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border-left: 1px solid var(--rule);
+  }
+  .unit:nth-child(3n+1) { border-left: 0; }
+  .unit:nth-child(n+4) { border-top: 1px solid var(--rule); }
+
+  .num {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(50px, 14vw, 92px);
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+    color: var(--fg);
+  }
+  .num span {
+    display: inline-block;
+    width: 0.56em;
+    text-align: center;
+  }
+  .num.single span { width: auto; }
+
+  .label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (min-width: 640px) {
+    .clock { grid-template-columns: repeat(6, 1fr); }
+    .unit:nth-child(3n+1) { border-left: 1px solid var(--rule); }
+    .unit:first-child { border-left: 0; }
+    .unit:nth-child(n+4) { border-top: 0; }
+    .num { font-size: clamp(50px, 7.2vw, 72px); }
+  }
+
+  .totals {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    max-width: 52ch;
+    text-wrap: balance;
+  }
+  .totals strong { font-weight: 400; color: var(--fg); }
+
+  .note {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(19px, 4.8vw, 22px);
+    line-height: 1.4;
+    color: var(--fg);
+    max-width: 36ch;
+    text-wrap: balance;
+  }
+  .note small {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .married {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(44px, 12vw, 88px);
+    line-height: 1.1;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .num span.tick { animation: settle 0.5s ease-out; }
+    @keyframes settle { from { opacity: 0.35; } to { opacity: 1; } }
+  }
+</style>
+</head>
+<body>
+<main class="card">
+  <p class="eyebrow">Save the date</p>
+
+  <h1 class="names">Arav <span class="amp">&amp;</span> Rhea</h1>
+
+  <p class="date">Sunday, the tenth of July<span class="year">two thousand thirty-three</span></p>
+
+  <div class="ornament" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.6 5.2 4.3 8.9 9.5 9.5v2c-5.2.6-8.9 4.3-9.5 9.5h-2c-.6-5.2-4.3-8.9-9.5-9.5v-2c5.2-.6 8.9-4.3 9.5-9.5h2z"/></svg>
+  </div>
+
+  <section class="clock" id="clock" aria-live="off" aria-label="Time until the wedding">
+    <div class="unit"><div class="num single" id="u-years"><span>0</span></div><div class="label">Years</div></div>
+    <div class="unit"><div class="num" id="u-months"><span>0</span><span>0</span></div><div class="label">Months</div></div>
+    <div class="unit"><div class="num" id="u-days"><span>0</span><span>0</span></div><div class="label">Days</div></div>
+    <div class="unit"><div class="num" id="u-hours"><span>0</span><span>0</span></div><div class="label">Hours</div></div>
+    <div class="unit"><div class="num" id="u-minutes"><span>0</span><span>0</span></div><div class="label">Minutes</div></div>
+    <div class="unit"><div class="num" id="u-seconds"><span>0</span><span>0</span></div><div class="label">Seconds</div></div>
+  </section>
+
+  <p class="married" id="married" hidden>Married.</p>
+
+  <p class="totals" id="totals">Or, all at once: <strong id="t-days">—</strong> days, which is <strong id="t-seconds">—</strong> seconds. Counting down every one.</p>
+
+  <div class="ornament" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.6 5.2 4.3 8.9 9.5 9.5v2c-5.2.6-8.9 4.3-9.5 9.5h-2c-.6-5.2-4.3-8.9-9.5-9.5v-2c5.2-.6 8.9-4.3 9.5-9.5h2z"/></svg>
+  </div>
+
+  <p class="note">Seven years to the day from the picnic.<small>Since July 10, 2026</small></p>
+</main>
+
+<script>
+(function () {
+  var TARGET = new Date(2033, 6, 10, 0, 0, 0, 0); // midnight, July 10, 2033, local time
+
+  function addMonths(d, n) {
+    var r = new Date(d.getTime());
+    var day = r.getDate();
+    r.setDate(1);
+    r.setMonth(r.getMonth() + n);
+    var last = new Date(r.getFullYear(), r.getMonth() + 1, 0).getDate();
+    r.setDate(Math.min(day, last));
+    return r;
+  }
+  function addDays(d, n) {
+    var r = new Date(d.getTime());
+    r.setDate(r.getDate() + n);
+    return r;
+  }
+
+  function breakdown(now, target) {
+    if (now >= target) return null;
+    var years = target.getFullYear() - now.getFullYear();
+    while (years > 0 && addMonths(now, years * 12) > target) years--;
+    var base = addMonths(now, years * 12);
+
+    var months = 0;
+    while (months < 12 && addMonths(base, months + 1) <= target) months++;
+    base = addMonths(base, months);
+
+    var days = Math.floor((target - base) / 86400000);
+    while (days > 0 && addDays(base, days) > target) days--;
+    while (addDays(base, days + 1) <= target) days++;
+    base = addDays(base, days);
+
+    var rem = target - base;
+    var hours = Math.floor(rem / 3600000); rem -= hours * 3600000;
+    var minutes = Math.floor(rem / 60000); rem -= minutes * 60000;
+    var seconds = Math.floor(rem / 1000);
+
+    return { years: years, months: months, days: days, hours: hours, minutes: minutes, seconds: seconds, totalMs: target - now };
+  }
+
+  var els = {
+    years: document.getElementById('u-years'),
+    months: document.getElementById('u-months'),
+    days: document.getElementById('u-days'),
+    hours: document.getElementById('u-hours'),
+    minutes: document.getElementById('u-minutes'),
+    seconds: document.getElementById('u-seconds')
+  };
+  var tDays = document.getElementById('t-days');
+  var tSeconds = document.getElementById('t-seconds');
+  var clock = document.getElementById('clock');
+  var totals = document.getElementById('totals');
+  var married = document.getElementById('married');
+
+  function setDigits(el, value, pad) {
+    var str = String(value);
+    if (pad && str.length < 2) str = '0' + str;
+    var spans = el.children;
+    if (spans.length !== str.length) {
+      el.textContent = '';
+      for (var i = 0; i < str.length; i++) {
+        var s = document.createElement('span');
+        s.textContent = str.charAt(i);
+        el.appendChild(s);
+      }
+      return;
+    }
+    for (var j = 0; j < str.length; j++) {
+      var ch = str.charAt(j);
+      if (spans[j].textContent !== ch) {
+        spans[j].textContent = ch;
+        spans[j].classList.remove('tick');
+        void spans[j].offsetWidth;
+        spans[j].classList.add('tick');
+      }
+    }
+  }
+
+  function render() {
+    var b = breakdown(new Date(), TARGET);
+    if (!b) {
+      clock.hidden = true;
+      totals.hidden = true;
+      married.hidden = false;
+      return;
+    }
+    setDigits(els.years, b.years, false);
+    setDigits(els.months, b.months, true);
+    setDigits(els.days, b.days, true);
+    setDigits(els.hours, b.hours, true);
+    setDigits(els.minutes, b.minutes, true);
+    setDigits(els.seconds, b.seconds, true);
+    tDays.textContent = Math.floor(b.totalMs / 86400000).toLocaleString();
+    tSeconds.textContent = Math.floor(b.totalMs / 1000).toLocaleString();
+  }
+
+  render();
+  // Align ticks to the wall-clock second so the display changes exactly on the second.
+  function schedule() {
+    var delay = 1000 - (Date.now() % 1000);
+    setTimeout(function () { render(); schedule(); }, delay);
+  }
+  schedule();
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) render(); });
+})();
+</script>
+</body>
+</html>
